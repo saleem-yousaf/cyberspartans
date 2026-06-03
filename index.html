@@ -285,6 +285,32 @@
 /* ===== CAPABILITIES (BreachForge + TI) ===== */
 .cap-section { background: var(--bg-card); }
 
+.product-positioning {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    padding: 24px 32px;
+    background: rgba(230, 57, 70, 0.05);
+    border: 1px solid rgba(230, 57, 70, 0.2);
+    border-radius: 12px;
+}
+.product-positioning .label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--red-bright);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.product-positioning p {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.6;
+}
+.product-positioning strong { color: var(--red-bright); }
+
 .cap-split {
     max-width: 1300px;
     margin: 0 auto;
@@ -602,9 +628,17 @@
 <section class="section cap-section">
     <div class="section-header">
         <div class="eyebrow"><span class="eyebrow-dot"></span>OUR CAPABILITIES</div>
-        <h2>We build the tools we <span class="red">believe in</span>.</h2>
+        <h2>We build what we <span class="red">use</span>.</h2>
         <p>When you are choosing a breach and attack simulation platform or a threat intelligence
-        feed, it helps to know what good looks like. So we built both.</p>
+        feed, it helps to know what good looks like. So we built both. The platforms live at their
+        own domains; we link out, not in.</p>
+    </div>
+
+    <div class="product-positioning">
+        <div class="label">⬡ A CyberSpartans Product</div>
+        <p><strong>BreachForge</strong> is the breach and attack simulation platform we built in-house
+        and now use on client engagements. It's our reference standard for BAS, and it's live at
+        <strong>breachforge.co.uk</strong>.</p>
     </div>
 
     <div class="cap-split">
