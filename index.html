@@ -465,69 +465,70 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CyberSpartans",
-  "url": "https://cyberspartans.co.uk",
-  "logo": "https://cyberspartans.co.uk/logo.png",
-  "description": "Cybersecurity and cloud consultancy. Security validation, vulnerability management, cloud audits and FinOps.",
-  "email": "info@cyberspartans.co.uk",
-  "areaServed": "GB",
-  "founder": {
-    "@type": "Person",
-    "name": "Saleem Yousaf",
-    "url": "https://www.saleemyousaf.co.uk",
-    "jobTitle": "Cloud Security Architect"
-  },
-  "knowsAbout": [
-    "Cybersecurity",
-    "Cloud Security",
-    "Security Architecture",
-    "Breach and Attack Simulation",
-    "Threat Intelligence",
-    "Vulnerability Management",
-    "Cloud FinOps",
-    "Security Audits"
-  ],
-  "sameAs": [
-    "https://www.linkedin.com/in/saleemyousaf",
-    "https://www.saleemyousaf.co.uk",
-    "https://breachforge.co.uk",
-    "https://github.com/saleem-yousaf"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Cybersecurity and Cloud Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Security Validation"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Vulnerability Management"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Cloud Security Audits"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "FinOps"
-        }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cyberspartans.co.uk/#org",
+      "name": "CyberSpartans",
+      "url": "https://cyberspartans.co.uk",
+      "logo": "https://cyberspartans.co.uk/logo.png",
+      "description": "Cybersecurity and cloud consultancy. Security validation, vulnerability management, cloud audits and FinOps.",
+      "email": "info@cyberspartans.co.uk",
+      "areaServed": "GB",
+      "founder": { "@id": "https://cyberspartans.co.uk/#saleem" },
+      "knowsAbout": [
+        "Cybersecurity",
+        "Cloud Security",
+        "Security Architecture",
+        "Breach and Attack Simulation",
+        "Threat Intelligence",
+        "Vulnerability Management",
+        "Cloud FinOps",
+        "Security Audits"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Cybersecurity and Cloud Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Security Validation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vulnerability Management" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Security Audits" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FinOps" } }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://cyberspartans.co.uk/#saleem",
+      "name": "Saleem Yousaf",
+      "url": "https://saleemyousaf.co.uk",
+      "jobTitle": "Cloud Security Architect and Director",
+      "worksFor": { "@id": "https://cyberspartans.co.uk/#org" },
+      "knowsAbout": ["Breach and attack simulation", "MITRE ATT&CK", "Cloud security", "Threat intelligence"],
+      "sameAs": [
+        "https://saleemyousaf.co.uk",
+        "https://breachforge.co.uk",
+        "https://www.linkedin.com/in/saleemyousaf",
+        "https://github.com/saleem-yousaf",
+        "https://saleemyousaf.medium.com",
+        "https://dev.to/saleem_yousaf",
+        "https://hashnode.com/@saleemyousaf",
+        "https://about.me/saleemyousaf"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://breachforge.co.uk/#app",
+      "name": "BreachForge",
+      "url": "https://breachforge.co.uk/",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Web",
+      "softwareVersion": "4.1",
+      "description": "Breach and Attack Simulation platform mapped to MITRE ATT&CK.",
+      "creator": { "@id": "https://cyberspartans.co.uk/#saleem" },
+      "publisher": { "@id": "https://cyberspartans.co.uk/#org" }
+    }
+  ]
 }
 </script>
 </head>
@@ -742,7 +743,7 @@
             <h4>Connect</h4>
             <a href="mailto:info@cyberspartans.co.uk">info@cyberspartans.co.uk</a>
             <a href="https://www.linkedin.com/in/saleemyousaf">LinkedIn</a>
-            <a href="https://www.saleemyousaf.co.uk" target="_blank" rel="noopener">saleemyousaf.co.uk</a>
+            <a href="https://saleemyousaf.co.uk" target="_blank" rel="noopener">saleemyousaf.co.uk</a>
         </div>
     </div>
     <div class="footer-bottom">
