@@ -1,7 +1,0 @@
-# Security policy for cyberspartans.co.uk
-# https://securitytxt.org / RFC 9116
-
-Contact: mailto:info@cyberspartans.co.uk
-Expires: 2027-08-21T10:23:13Z
-Preferred-Languages: en
-Canonical: https://cyberspartans.co.uk/.well-known/security.txt
