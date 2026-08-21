@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Security: CSP and Referrer-Policy set via meta. HSTS and X-Content-Type-Options need real response headers (Cloudflare), see DEPLOY.md -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="CyberSpartans is a cybersecurity and cloud consultancy. Security validation, vulnerability management, cloud audits and FinOps for organisations that want measurable assurance.">
-<link rel="canonical" href="https://cyberspartans.co.uk/">
+<link rel="canonical" href="https://cyberspartans.co.uk">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CyberSpartans | Cybersecurity & Cloud Consultancy">
 <meta property="og:description" content="Security validation, vulnerability management, cloud audits and FinOps from a consultancy that does the work.">
-<meta property="og:url" content="https://cyberspartans.co.uk/">
+<meta property="og:url" content="https://cyberspartans.co.uk">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CyberSpartans | Cybersecurity &amp; Cloud Consultancy">
 <meta name="twitter:description" content="Security validation, vulnerability management, cloud audits and FinOps from a consultancy that does the work.">
