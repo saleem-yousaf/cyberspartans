@@ -317,6 +317,95 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;}
 </style>
 </head>
 <body>
+<!-- CyberSpartans "The Awakening" intro overlay (scoped, once-per-session, dismiss-in-place) -->
+<style>
+#cs-awaken{position:fixed;inset:0;z-index:2147483000;display:none;background:#03070b;color:#e4f3f8;font-family:Arial,Helvetica,sans-serif;opacity:1;transition:opacity .45s ease}
+#cs-awaken.csaw-leaving{opacity:0}
+html.csaw-lock{overflow:hidden}
+#cs-awaken *{box-sizing:border-box}
+#cs-awaken .csaw-stage{position:relative;isolation:isolate;width:100%;height:100svh;min-height:360px;overflow:hidden;background:radial-gradient(ellipse at 50% 47%,#0a1b24 0%,#050a0f 46%,#020406 85%)}
+#cs-awaken .csaw-art{position:absolute;left:50%;top:46%;width:min(110vw,1450px);aspect-ratio:1672/941;transform:translate(-50%,-50%);mask-image:linear-gradient(to bottom,#000 0%,#000 61%,transparent 79%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 61%,transparent 79%);opacity:0}
+#cs-awaken .csaw-art img,#cs-awaken .csaw-art picture{display:block;width:100%;height:100%;object-fit:contain}
+#cs-awaken .csaw-metal{clip-path:inset(0 49.9% 0 0)}
+#cs-awaken .csaw-digital{clip-path:inset(0 0 0 50%)}
+#cs-awaken .csaw-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 20%,#03070b99 77%,#03070b 100%)}
+#cs-awaken canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#cs-awaken .csaw-scan{position:absolute;left:29%;right:29%;top:42%;height:1px;background:linear-gradient(90deg,transparent,#75ebff,transparent);box-shadow:0 0 25px 5px #2adaff65;opacity:0}
+#cs-awaken .csaw-brand{position:absolute;left:0;right:0;top:72%;text-align:center;opacity:0;padding:0 20px}
+#cs-awaken .csaw-brand h1{margin:0;font-size:clamp(18px,3.1vw,43px);font-weight:300;letter-spacing:.34em;padding-left:.34em;color:#d9e7ec;text-shadow:0 0 30px #81deff22}
+#cs-awaken .csaw-brand p{font-size:clamp(10px,1vw,12px);font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#7c959f;margin:19px 0 0}
+#cs-awaken .csaw-controls{position:absolute;bottom:max(30px,env(safe-area-inset-bottom));left:clamp(24px,4vw,64px);right:clamp(24px,4vw,64px);display:flex;align-items:center;gap:24px}
+#cs-awaken .csaw-track{height:1px;background:#617f873e;flex:1;position:relative;overflow:visible}
+#cs-awaken .csaw-progress{height:1px;width:100%;transform:scaleX(0);transform-origin:left;background:#9af0ff;box-shadow:0 0 10px #67dfff}
+#cs-awaken .csaw-skip{border:0;background:none;color:#91a6af;padding:12px 0;cursor:pointer;font:inherit;font-size:12px;letter-spacing:.05em;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+#cs-awaken .csaw-skip:hover{color:#fff}
+#cs-awaken .csaw-skip span{padding-left:12px;font-size:20px;vertical-align:-1px}
+#cs-awaken .csaw-skip:focus-visible{outline:2px solid #57e1ff;outline-offset:7px}
+#cs-awaken .csaw-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#cs-awaken .csaw-playing .csaw-metal{animation:csaw-metal 4s both}
+#cs-awaken .csaw-playing .csaw-digital{animation:csaw-digital 4s both}
+#cs-awaken .csaw-playing .csaw-scan{animation:csaw-scan 4s both}
+#cs-awaken .csaw-playing .csaw-brand{animation:csaw-brand 4s both}
+#cs-awaken .csaw-playing .csaw-progress{animation:csaw-progress 4s linear both}
+@keyframes csaw-metal{0%{opacity:0;filter:brightness(.25);transform:translate(-50%,-50%) scale(1.045)}22%{opacity:1;filter:brightness(.7)}60%,100%{opacity:1;filter:brightness(1);transform:translate(-50%,-50%) scale(1)}}
+@keyframes csaw-digital{0%,20%{opacity:0;clip-path:inset(0 48% 0 50%);filter:brightness(2)}55%{opacity:1;clip-path:inset(0 0 0 50%);filter:brightness(1.3)}100%{opacity:1;clip-path:inset(0 0 0 50%);filter:brightness(1)}}
+@keyframes csaw-scan{0%,37%{opacity:0;transform:scaleX(.1)}44%{opacity:1;transform:scaleX(.55)}60%{opacity:.55;transform:scaleX(1.4)}78%,100%{opacity:0;transform:scaleX(1.7)}}
+@keyframes csaw-brand{0%,56%{opacity:0;transform:translateY(10px);filter:blur(6px)}80%,100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes csaw-progress{to{transform:scaleX(1)}}
+@media(max-width:600px){#cs-awaken .csaw-art{width:180vw;top:43%}#cs-awaken .csaw-brand{top:67%}#cs-awaken .csaw-brand h1{font-size:20px;letter-spacing:.19em;padding-left:.19em}#cs-awaken .csaw-brand p{letter-spacing:.14em;margin-top:16px}#cs-awaken .csaw-scan{left:12%;right:12%;top:37%}#cs-awaken .csaw-controls{gap:18px;bottom:22px}}
+@media(max-height:540px) and (min-width:601px){#cs-awaken .csaw-art{width:85vw;top:40%}#cs-awaken .csaw-brand{top:68%}#cs-awaken .csaw-brand h1{font-size:24px}#cs-awaken .csaw-brand p{margin-top:10px}#cs-awaken .csaw-controls{bottom:12px}}
+@media(prefers-reduced-motion:reduce){#cs-awaken .csaw-art,#cs-awaken .csaw-brand{opacity:1}#cs-awaken .csaw-scan,#cs-awaken canvas{display:none}#cs-awaken *,#cs-awaken *:before,#cs-awaken *:after{animation:none!important;transition:none!important}}
+</style>
+
+<div id="cs-awaken" aria-label="CyberSpartans cinematic introduction">
+  <div class="csaw-stage">
+    <div class="csaw-art csaw-metal" aria-hidden="true"><picture><source srcset="assets/awakening.webp" type="image/webp"><img src="assets/awakening.png" alt="" fetchpriority="high"></picture></div>
+    <div class="csaw-art csaw-digital" aria-hidden="true"><picture><source srcset="assets/awakening.webp" type="image/webp"><img src="assets/awakening.png" alt=""></picture></div>
+    <canvas class="csaw-particles" aria-hidden="true"></canvas>
+    <div class="csaw-scan" aria-hidden="true"></div><div class="csaw-vignette" aria-hidden="true"></div>
+    <div class="csaw-brand"><h1>CYBERSPARTANS</h1><p>Cybersecurity &amp; Cloud Consultancy</p></div>
+    <div class="csaw-controls"><div class="csaw-track" aria-hidden="true"><div class="csaw-progress"></div></div><button class="csaw-skip" type="button">Skip intro <span aria-hidden="true">&#8250;</span></button></div>
+    <p class="csaw-status" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  // WHY default-hidden and JS-shown: if the script is blocked (CSP) or errors, the
+  // overlay never appears and the homepage underneath is fully usable. We only
+  // reveal it deliberately, once per session, for motion-OK visitors.
+  var KEY='cs-awaken-seen';
+  var root=document.getElementById('cs-awaken');
+  if(!root) return;
+  var motion=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
+  function seen(){try{return sessionStorage.getItem(KEY)==='1'}catch(e){return false}}
+  function remember(){try{sessionStorage.setItem(KEY,'1')}catch(e){}}
+  if((motion&&motion.matches)||seen()){return;}  // never show: leave homepage as-is
+
+  var stage=root.querySelector('.csaw-stage');
+  var statusEl=root.querySelector('.csaw-status');
+  var canvas=root.querySelector('.csaw-particles'),ctx=canvas.getContext('2d');
+  var w=0,h=0,dpr=1,points=[],frame,timer,startTime=0,leaving=false;
+
+  function resize(){w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);points=Array.from({length:w<600?55:100},function(){return{x:Math.random(),y:Math.random(),r:Math.random()*1.3+.3,delay:Math.random()*.6}})}
+  function render(now){var t=(now-startTime)/1000;ctx.clearRect(0,0,w,h);if(t>4)return;var activity=Math.max(0,Math.sin(Math.PI*Math.min(1,Math.max(0,(t-.5)/3))));points.forEach(function(p){var easing=Math.min(1,Math.max(0,(t-.6-p.delay)/2));var x=w*(.52+p.x*.32*(1-easing*.65));var y=h*(.13+p.y*.49);ctx.fillStyle='rgba(83,216,255,'+(activity*(.15+p.r*.25))+')';ctx.fillRect(x,y,p.r*1.3,p.r*1.3);if(p.r>1.2){ctx.strokeStyle='rgba(68,202,244,'+(activity*.08)+')';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+20*(1-easing),y);ctx.stroke()}});frame=requestAnimationFrame(render)}
+
+  function cleanup(){if(root&&root.parentNode)root.parentNode.removeChild(root);document.documentElement.classList.remove('csaw-lock')}
+  function dismiss(){if(leaving)return;leaving=true;clearTimeout(timer);cancelAnimationFrame(frame);root.classList.add('csaw-leaving');setTimeout(cleanup,450)}
+  function play(){startTime=performance.now();stage.classList.add('csaw-playing');statusEl.textContent='The Awakening. A four-second CyberSpartans helmet reveal.';frame=requestAnimationFrame(render);timer=setTimeout(dismiss,4000)}
+
+  remember();                                   // mark seen now, so a mid-intro reload will not replay
+  document.documentElement.classList.add('csaw-lock');
+  root.style.display='block';
+  root.querySelector('.csaw-skip').addEventListener('click',dismiss);
+  addEventListener('resize',resize);resize();
+
+  var img=root.querySelector('.csaw-art img');
+  var ready=(img&&img.decode)?img.decode().catch(function(){}):Promise.resolve();
+  ready.then(play);                             // play even if the artwork fails to decode
+})();
+</script>
+
 
 <header>
   <div class="nav-inner">
