@@ -315,8 +315,94 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;}
   .scan{display:none;}
 }
 </style>
+
+<style>
+/* CyberSpartans Awakening intro, scoped overlay. Dismiss-in-place, never redirects. */
+#cs-awaken{--csa-cyan:#57e1ff;position:fixed;inset:0;z-index:2147483000;display:none;font-family:Arial,Helvetica,sans-serif;color:#e4f3f8}
+#cs-awaken *{box-sizing:border-box}
+#cs-awaken button{font:inherit}
+#cs-awaken button:focus-visible{outline:2px solid var(--csa-cyan);outline-offset:7px}
+#cs-awaken .csa-stage{position:relative;isolation:isolate;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse at 50% 47%,#0a1b24 0%,#050a0f 46%,#020406 85%)}
+#cs-awaken .csa-art{position:absolute;left:50%;top:46%;width:min(110vw,1450px);aspect-ratio:1672/941;transform:translate(-50%,-50%);mask-image:linear-gradient(to bottom,#000 0%,#000 61%,transparent 79%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 61%,transparent 79%);opacity:0}
+#cs-awaken .csa-art img{display:block;width:100%;height:100%;object-fit:contain}
+#cs-awaken .csa-metal{clip-path:inset(0 49.9% 0 0)}
+#cs-awaken .csa-digital{clip-path:inset(0 0 0 50%)}
+#cs-awaken .csa-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 20%,#03070b99 77%,#03070b 100%)}
+#cs-awaken canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#cs-awaken .csa-scan{position:absolute;left:29%;right:29%;top:42%;height:1px;background:linear-gradient(90deg,transparent,#75ebff,transparent);box-shadow:0 0 25px 5px #2adaff65;opacity:0}
+#cs-awaken .csa-brand{position:absolute;left:0;right:0;top:72%;text-align:center;opacity:0;padding:0 20px}
+#cs-awaken .csa-brand h1{margin:0;font-size:clamp(18px,3.1vw,43px);font-weight:300;letter-spacing:.34em;padding-left:.34em;color:#d9e7ec;text-shadow:0 0 30px #81deff22}
+#cs-awaken .csa-brand p{font-size:clamp(10px,1vw,12px);font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#7c959f;margin:19px 0 0}
+#cs-awaken .csa-controls{position:absolute;bottom:max(30px,env(safe-area-inset-bottom));left:clamp(24px,4vw,64px);right:clamp(24px,4vw,64px);display:flex;align-items:center;gap:24px}
+#cs-awaken .csa-track{height:1px;background:#617f873e;flex:1;position:relative;overflow:visible}
+#cs-awaken .csa-progress{height:1px;width:100%;transform:scaleX(0);transform-origin:left;background:#9af0ff;box-shadow:0 0 10px #67dfff}
+#cs-awaken .csa-skip{border:0;background:none;color:#91a6af;padding:12px 0;cursor:pointer;font-size:12px;letter-spacing:.05em;white-space:nowrap}
+#cs-awaken .csa-skip:hover{color:#fff}
+#cs-awaken .csa-skip span{padding-left:12px;font-size:20px;vertical-align:-1px}
+#cs-awaken .csa-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#cs-awaken.csa-playing .csa-metal{animation:csa-metal 4s both}
+#cs-awaken.csa-playing .csa-digital{animation:csa-digital 4s both}
+#cs-awaken.csa-playing .csa-scan{animation:csa-scan 4s both}
+#cs-awaken.csa-playing .csa-brand{animation:csa-brand 4s both}
+#cs-awaken.csa-playing .csa-progress{animation:csa-progress 4s linear both}
+#cs-awaken.csa-complete .csa-art{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#cs-awaken.csa-complete .csa-brand{opacity:1}
+#cs-awaken.csa-complete .csa-controls{opacity:0;pointer-events:none}
+#cs-awaken.csa-leaving{opacity:0;transition:opacity .45s}
+#cs-awaken.csa-loading .csa-brand{opacity:1}
+#cs-awaken.csa-loading .csa-brand p{color:#a6bbc3}
+@keyframes csa-metal{0%{opacity:0;filter:brightness(.25);transform:translate(-50%,-50%) scale(1.045)}22%{opacity:1;filter:brightness(.7)}60%,100%{opacity:1;filter:brightness(1);transform:translate(-50%,-50%) scale(1)}}
+@keyframes csa-digital{0%,20%{opacity:0;clip-path:inset(0 48% 0 50%);filter:brightness(2)}55%{opacity:1;clip-path:inset(0 0 0 50%);filter:brightness(1.3)}100%{opacity:1;clip-path:inset(0 0 0 50%);filter:brightness(1)}}
+@keyframes csa-scan{0%,37%{opacity:0;transform:scaleX(.1)}44%{opacity:1;transform:scaleX(.55)}60%{opacity:.55;transform:scaleX(1.4)}78%,100%{opacity:0;transform:scaleX(1.7)}}
+@keyframes csa-brand{0%,56%{opacity:0;transform:translateY(10px);filter:blur(6px)}80%,100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes csa-progress{to{transform:scaleX(1)}}
+@media(max-width:600px){#cs-awaken .csa-art{width:180vw;top:43%}#cs-awaken .csa-brand{top:67%}#cs-awaken .csa-brand h1{font-size:20px;letter-spacing:.19em;padding-left:.19em}#cs-awaken .csa-brand p{letter-spacing:.14em;margin-top:16px}#cs-awaken .csa-scan{left:12%;right:12%;top:37%}#cs-awaken .csa-controls{gap:18px;bottom:22px}}
+@media(max-height:540px) and (min-width:601px){#cs-awaken .csa-art{width:85vw;top:40%}#cs-awaken .csa-brand{top:68%}#cs-awaken .csa-brand h1{font-size:24px}#cs-awaken .csa-brand p{margin-top:10px}#cs-awaken .csa-controls{bottom:12px}}
+@media(prefers-reduced-motion:reduce){#cs-awaken *,#cs-awaken *:before,#cs-awaken *:after{animation:none!important;transition:none!important}#cs-awaken .csa-art,#cs-awaken .csa-brand{opacity:1}#cs-awaken .csa-scan,#cs-awaken canvas{display:none}}
+body.csa-lock{overflow:hidden}
+</style>
 </head>
 <body>
+<div id="cs-awaken" aria-label="CyberSpartans cinematic introduction">
+  <div class="csa-stage">
+    <div class="csa-art csa-metal" aria-hidden="true"><img src="assets/awakening.png" alt="" fetchpriority="high"></div>
+    <div class="csa-art csa-digital" aria-hidden="true"><img src="assets/awakening.png" alt=""></div>
+    <canvas aria-hidden="true"></canvas>
+    <div class="csa-scan" aria-hidden="true"></div><div class="csa-vignette" aria-hidden="true"></div>
+    <div class="csa-brand"><h1>CYBERSPARTANS</h1><p>Cybersecurity &amp; Cloud Consultancy</p></div>
+    <div class="csa-controls"><div class="csa-track" aria-hidden="true"><div class="csa-progress"></div></div><button class="csa-skip" type="button">Skip intro <span aria-hidden="true">›</span></button></div>
+    <p class="csa-status" role="status" aria-live="polite"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('cs-awaken'); if(!el)return;
+  var motion=matchMedia('(prefers-reduced-motion: reduce)');
+  var nointro=/[?&]nointro/.test(location.search);
+  function seen(){try{return sessionStorage.getItem('cs-awaken-seen')==='1'}catch(e){return false}}
+  function remember(){try{sessionStorage.setItem('cs-awaken-seen','1')}catch(e){}}
+  function kill(){remember();document.body.classList.remove('csa-lock');if(el.parentNode)el.parentNode.removeChild(el);}
+  // ?nointro, a repeat visit, or reduced-motion: no intro, homepage directly.
+  if(nointro||seen()||motion.matches){kill();return;}
+  var status=el.querySelector('.csa-status');
+  var canvas=el.querySelector('canvas'),ctx=canvas&&canvas.getContext?canvas.getContext('2d'):null;
+  var w=0,h=0,dpr=1,points=[],timer,frame,startTime=0,leaving=false;
+  // Hard failsafe: the overlay is gone within 6s whatever happens in the animation.
+  var failsafe=setTimeout(kill,6000);
+  function dismiss(){if(leaving)return;leaving=true;clearTimeout(timer);clearTimeout(failsafe);if(frame)cancelAnimationFrame(frame);el.classList.add('csa-leaving');setTimeout(kill,450);}
+  function finish(){if(frame)cancelAnimationFrame(frame);if(ctx)ctx.clearRect(0,0,w,h);el.classList.remove('csa-playing');el.classList.add('csa-complete');status.textContent='Introduction complete.';dismiss();}
+  function resize(){w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);if(ctx){canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}points=Array.from({length:w<600?55:100},function(){return{x:Math.random(),y:Math.random(),r:Math.random()*1.3+0.3,delay:Math.random()*0.6};});}
+  function render(now){if(!ctx)return;var t=(now-startTime)/1000;ctx.clearRect(0,0,w,h);if(t>4)return;var activity=Math.max(0,Math.sin(Math.PI*Math.min(1,Math.max(0,(t-0.5)/3))));points.forEach(function(p){var easing=Math.min(1,Math.max(0,(t-0.6-p.delay)/2));var x=w*(0.52+p.x*0.32*(1-easing*0.65));var y=h*(0.13+p.y*0.49);ctx.fillStyle='rgba(83,216,255,'+(activity*(0.15+p.r*0.25))+')';ctx.fillRect(x,y,p.r*1.3,p.r*1.3);if(p.r>1.2){ctx.strokeStyle='rgba(68,202,244,'+(activity*0.08)+')';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+20*(1-easing),y);ctx.stroke();}});frame=requestAnimationFrame(render);}
+  function play(){el.style.display='';document.body.classList.add('csa-lock');el.classList.remove('csa-playing','csa-complete','csa-leaving','csa-loading');void el.offsetWidth;el.classList.add('csa-playing');status.textContent='The Awakening.';startTime=performance.now();if(ctx)frame=requestAnimationFrame(render);timer=setTimeout(finish,4000);}
+  var skip=el.querySelector('.csa-skip');if(skip)skip.addEventListener('click',dismiss);
+  addEventListener('resize',resize);
+  if(motion.addEventListener)motion.addEventListener('change',function(){if(motion.matches)dismiss();});
+  resize();
+  var img=el.querySelector('.csa-art img');
+  el.style.display='';el.classList.add('csa-loading');
+  (img&&img.decode?img.decode().catch(function(){}):Promise.resolve()).then(play);
+})();
+</script>
 
 <header>
   <div class="nav-inner">
