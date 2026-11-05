@@ -1,0 +1,10 @@
+{
+  "project": "AI Foundry & Agent 365",
+  "updated": "2026-11-05",
+  "docs": [
+    { "file": "securing-ai-agents-briefing.pdf",          "title": "Securing AI Agents in the Agentic World" },
+    { "file": "ai-agent-365-security-pattern.pdf",         "title": "AI Agent 365 Security Pattern" },
+    { "file": "ai-agent-kill-switch-factfile.pdf",         "title": "AI Agent Kill Switch Fact File" },
+    { "file": "soc-enablement-pack-foundry-agent365.pdf",  "title": "SOC Enablement Pack" }
+  ]
+}
