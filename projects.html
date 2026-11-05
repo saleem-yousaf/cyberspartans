@@ -158,6 +158,22 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;}
   .doc-dl{flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--ac-bright);border:1px solid var(--ac-line);border-radius:6px;padding:7px 12px;align-self:center}
   .proj-note{font-size:13px;color:var(--muted2);margin-top:26px;font-family:var(--mono)}
   @media(max-width:720px){.doc-grid{grid-template-columns:1fr}.proj-block{padding:22px}}
+
+  .cs-browse{margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .cs-browse-btn{font-family:var(--mono);font-size:12px;color:var(--ac-bright);border:1px solid var(--ac-line);background:var(--ac-soft);border-radius:7px;padding:10px 16px;cursor:pointer;transition:background .2s,border-color .2s}
+  .cs-browse-btn:hover{background:rgba(47,158,111,.18);border-color:var(--ac)}
+  .cs-browse-btn:disabled{opacity:.6;cursor:default}
+  .cs-browse-hint{font-family:var(--mono);font-size:11px;color:var(--muted2)}
+  .cs-folder{margin-top:16px;border:1px solid var(--border);border-radius:11px;background:var(--bg3);overflow:hidden}
+  .cs-fl-head{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg2)}
+  .cs-fl-row{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--border);text-decoration:none;transition:background .18s}
+  .cs-fl-row:last-child{border-bottom:none}
+  .cs-fl-row:hover{background:var(--ac-soft)}
+  .cs-fl-name{flex:1;min-width:0;font-size:13.5px;color:var(--text);word-break:break-all}
+  .cs-fl-size{font-family:var(--mono);font-size:11px;color:var(--muted2);flex-shrink:0}
+  .cs-fl-dl{font-family:var(--mono);font-size:11px;color:var(--ac-bright);flex-shrink:0}
+  .cs-fl-loading,.cs-fl-empty,.cs-fl-err{padding:16px;font-size:13px;color:var(--muted)}
+  .cs-fl-err{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -229,6 +245,12 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;}
           <div class="doc-dl">Download &#8595;</div>
         </a>
     </div>
+    <div class="cs-browse">
+      <button type="button" class="cs-browse-btn" onclick="csBrowseDocs(this)">Browse the docs folder (live) &#8594;</button>
+      <span class="cs-browse-hint">reads the folder straight from the repository &middot; download only</span>
+    </div>
+    <div id="cs-folder" class="cs-folder" style="display:none"></div>
+
     <p class="proj-note">More projects to follow. For engagement enquiries, use Connect above.</p>
   </div>
 </div></section>
@@ -247,5 +269,30 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;}
   <div class="foot-bottom"><span>© 2026 CyberSpartans &middot; cyberspartans.co.uk</span><span>Cybersecurity and cloud, done properly.</span></div>
 </div></footer>
 <script>(function(){if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(function(e){io.observe(e);});})();</script>
+<script>
+async function csBrowseDocs(btn){
+  var owner="saleem-yousaf", repo="cyberspartans", path="docs/ai-foundry";
+  var base="https://cyberspartans.co.uk/"+path+"/";
+  var panel=document.getElementById("cs-folder");
+  panel.style.display="block";
+  panel.innerHTML='<div class="cs-fl-loading">Checking the folder...</div>';
+  btn.disabled=true;
+  try{
+    var r=await fetch("https://api.github.com/repos/"+owner+"/"+repo+"/contents/"+path,{headers:{"Accept":"application/vnd.github+json"}});
+    if(!r.ok) throw new Error("status "+r.status);
+    var items=await r.json();
+    var files=items.filter(function(i){return i.type==="file";});
+    if(!files.length){ panel.innerHTML='<div class="cs-fl-empty">No files found in the folder.</div>'; btn.disabled=false; return; }
+    var rows=files.map(function(f){
+      var kb=Math.round((f.size||0)/1024);
+      return '<a class="cs-fl-row" href="'+base+encodeURIComponent(f.name)+'" download><span class="cs-fl-name">'+f.name+'</span><span class="cs-fl-size">'+kb+' KB</span><span class="cs-fl-dl">Download &#8595;</span></a>';
+    }).join("");
+    panel.innerHTML='<div class="cs-fl-head">'+files.length+' file(s) in '+path+', live from the repository</div>'+rows;
+  }catch(e){
+    panel.innerHTML='<div class="cs-fl-err">Could not load the live folder listing right now. The documents above are always available to download.</div>';
+  }
+  btn.disabled=false;
+}
+</script>
 </body>
 </html>
