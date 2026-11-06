@@ -1,12 +1,34 @@
 {
   "project": "AI Foundry & Agent 365",
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "docs": [
-    { "file": "securing-ai-agents-briefing.pdf",          "title": "Securing AI Agents in the Agentic World" },
-    { "file": "ai-agent-365-security-pattern.pdf",         "title": "AI Agent 365 Security Pattern" },
-    { "file": "ai-agent-kill-switch-factfile.pdf",         "title": "AI Agent Kill Switch Fact File" },
-    { "file": "soc-enablement-pack-foundry-agent365.pdf",  "title": "SOC Enablement Pack" },
-    { "file": "ai-agent-kill-switch-presenter-script.pdf", "title": "AI Agent Kill Switch Presenter Script" },
-    { "file": "all-diagrams-mermaid.md",                   "title": "Kill Switch & SOC Diagrams (mermaid source)" }
+    {
+      "file": "Agent365_Foundry_Security_LLD_v1.2.docx",
+      "title": "Agent 365 and Foundry Security Low Level Design (v1.2)"
+    },
+    {
+      "file": "securing-ai-agents-briefing.pdf",
+      "title": "Securing AI Agents in the Agentic World"
+    },
+    {
+      "file": "ai-agent-365-security-pattern.pdf",
+      "title": "AI Agent 365 Security Pattern"
+    },
+    {
+      "file": "ai-agent-kill-switch-factfile.pdf",
+      "title": "AI Agent Kill Switch Fact File"
+    },
+    {
+      "file": "soc-enablement-pack-foundry-agent365.pdf",
+      "title": "SOC Enablement Pack"
+    },
+    {
+      "file": "ai-agent-kill-switch-presenter-script.pdf",
+      "title": "AI Agent Kill Switch Presenter Script"
+    },
+    {
+      "file": "all-diagrams-mermaid.md",
+      "title": "Kill Switch & SOC Diagrams (mermaid source)"
+    }
   ]
 }
